@@ -64,30 +64,51 @@ class Pisg(callbacks.Plugin):
     #Generate the file
     def pisg(self, irc, msg, args):
         """takes no arguments.
-        Regenerates the statistics page."""
-        url = self.registryValue('url')
+        Regenerates the statistics page. Please be aware that various 
+        config values need to be set to make this work."""
+        
+        self.statssuccess = 0
         
         try:
-            retcode = subprocess.check_call(["/home/peter/pisg/pisg-0.73/pisg"])
+            retcode = subprocess.check_call(self.registryValue('location'))
             if retcode < 0:
                 self.log.info(str("Error generating stats file."))
             else:
-                self.log.info(str("Stats file generated; uploading..."))
-                self._uploadToFTP()
-                irc.reply("Stats updated: %s" % self.registryValue('url'))
+                self.log.info(str("Stats file generated successfully."))
+                if self.registryValue('ftp'):
+                    self.log.info(str("Uploading to: %s" % self.registryValue('ftp.server')))
+                    self._uploadToFTP()
+                else:
+                    self.statssuccess = 1
+                
+                if self.statssuccess == 1:
+                    # Maybe change this to print destFile too? Ex: irc.reply("stuff %s more stuff %s" % (var1, var2))
+                    irc.reply("Stats updated: %s" % self.registryValue('url'))
+                else:
+                    irc.error("Stats not updated. See the log for details.")
         except OSError, e:
             self.log.info(str("Error generating stats file."))
     pisg = wrap(pisg)
 
     def _uploadToFTP(self):
+        if self.registryValue('ftp.server') == '':
+                self.log.info(str("You've asked to upload the Pisg stats, but haven't set plugins.Pisg.ftp.host! "))
+                return
+                
+        if self.registryValue('ftp.sourceFile') == '':
+                self.log.info(str("You've asked to upload the Pisg stats, but haven't set plugins.Pisg.ftp.sourceFile!"))
+                return
+            
         ftp = ftputil.FTPHost(self.registryValue('ftp.server'), self.registryValue('ftp.user'), self.registryValue('ftp.pass'))
         
         if self.registryValue('ftp.dir') != '':
             ftputil.chdir(self.registryValue('ftp.dir'))
         
-        ftp.upload('/home/peter/Porygon-Z/pokecharms.html','pokecharms.html')
+        ftp.upload(self.registryValue('ftp.sourceFile'),self.registryValue('ftp.destFile'))
         ftp.close()
-
+        self.statssuccess = 1
+        self.log.info("File uploaded.")
+        
 Class = Pisg
 
 # vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=79:

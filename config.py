@@ -45,13 +45,13 @@ Pisg = conf.registerPlugin('Pisg')
 conf.registerGlobalValue(Pisg, 'enabled',
     registry.Boolean(True, _("""Determines whether the stats are automatically updated.""")))
     
-conf.registerGlobalValue(Pisg, 'pisglocation',
+conf.registerGlobalValue(Pisg, 'location',
     registry.String('/usr/bin/pisg', _("""The absolute location of the pisg executable.""")))
 conf.registerGlobalValue(Pisg, 'url',
     registry.String('', _("""The URL of the final stats file. This will be part of the response sent to the server..""")))
-        
+
 conf.registerGlobalValue(Pisg, 'ftp',
-    registry.Boolean(True, _("""Determines whether the stats are automatically uploaded to an FTP server.""")))
+    registry.Boolean(False, _("""Determines whether the stats are automatically uploaded to an FTP server.""")))
 conf.registerGlobalValue(Pisg.ftp, 'server',
     registry.String('', _("""The hostname of the FTP server that Pisg should connect to.""")))
 conf.registerGlobalValue(Pisg.ftp, 'user',
@@ -60,6 +60,10 @@ conf.registerGlobalValue(Pisg.ftp, 'pass',
     registry.String('', _("""The password for the FTP server that Pisg should connect to.""")))
 conf.registerGlobalValue(Pisg.ftp, 'dir',
     registry.String('', _("""If you would like the stats file to upload somewhere other than the root directory, specify it here.""")))
-
+conf.registerGlobalValue(Pisg.ftp, 'sourceFile',
+    registry.String('', _("""The absolute location and filename of the HTML file pisg outputs. If this 
+    is just set to a filename in pisg.cfg, the file will be generated in the root of your bot directory.""")))
+conf.registerGlobalValue(Pisg.ftp, 'destFile',
+    registry.String('stats.html', _("""The filename that the final stats file will be written to the server as.""")))
 
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
