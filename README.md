@@ -27,7 +27,9 @@ plugins.Pisg.url [http://yourdomain.tld/statsfile.html]: Defaults to blank. This
 
 If FTP Uploading support is desired, the following variables need to be set:
 
-plugins.Pisg.ftp [True/False]: Defaults to false. Determines whether the stats are automatically uploaded to an FTP server upon generation.
+    plugins.Pisg.ftp [True/False]
+Defaults to false. Determines whether the stats are automatically uploaded to an FTP server upon generation.
+
 plugins.Pisg.ftp.server [ftp.yourdomain.tld]: Defaults to blank, but **required**. This is where the hostname of your FTP server is set. 
 plugins.Pisg.ftp.name [username]: Defaults to anonymous. This is where the username used to log into your FTP server is set. 
 plugins.Pisg.ftp.pass [username]: Defaults to anonymous. If your FTP server requires a password, set it here.
