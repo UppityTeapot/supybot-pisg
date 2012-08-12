@@ -1,15 +1,15 @@
 #What is supybot-pisg?
 
-This plugin will generate a statistics file for your channel through the Perl IRC Statistics Generator, or (pisg)[http://pisg.sourceforge.net]. Pisg is a neat little Perl script that parses your log files and generates an HTML page with trivia about your users, such as who speaks the most, who asks the most questions, etcetera.
+This plugin will generate a statistics file for your channel through the Perl IRC Statistics Generator, or [pisg](http://pisg.sourceforge.net). Pisg is a neat little Perl script that parses your log files and generates an HTML page with trivia about your users, such as who speaks the most, who asks the most questions, etcetera.
 
 # Prerequisites
 
 * ChannelLogger (or another logging system) logging your stats:
 * * Make sure log rotation and time-stamping is turned on; set supybot.plugins.ChannelLogger.rotateLogs and supybot.plugins.ChannelLogger.timestamp to true.
 
-* (ftputil)[http://ftputil.sschwarzer.net/] installed on your system **if you want to use FTP**. You can usually do this fairly easily by downloading the file, extracting it, and executing "sudo python setup.py install" in the resulting directory.
+* [ftputil](http://ftputil.sschwarzer.net/) installed on your system **if you want to use FTP**. You can usually do this fairly easily by downloading the file, extracting it, and executing "sudo python setup.py install" in the resulting directory.
 
-* (pisg)[http://pisg.sourceforge.net] installed somewhere on your system
+* [pisg](http://pisg.sourceforge.net) installed somewhere on your system
 * pisg.cfg set up to taste, and working if pisg is called directly from the shell. Your Pisg config should contain, at minimum, the following:
 * * LogDir (Assuming you are using Supybot's ChannelLogger plugin, LogDir should be /path/to/botdir/logs/ChannelLogger/NETWORK/CHANNEL/)
 * * Format (If using ChannelLogger, this should be "supy")
