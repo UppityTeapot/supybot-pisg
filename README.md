@@ -5,15 +5,15 @@ This plugin will generate a statistics file for your channel through the Perl IR
 # Prerequisites
 
 * ChannelLogger (or another logging system) logging your stats:
-* * Make sure log rotation and time-stamping is turned on; set supybot.plugins.ChannelLogger.rotateLogs and supybot.plugins.ChannelLogger.timestamp to true.
+	* Make sure log rotation and time-stamping is turned on; set supybot.plugins.ChannelLogger.rotateLogs and supybot.plugins.ChannelLogger.timestamp to true.
 
 * [ftputil](http://ftputil.sschwarzer.net/) installed on your system **if you want to use FTP**. You can usually do this fairly easily by downloading the file, extracting it, and executing "sudo python setup.py install" in the resulting directory.
 
 * [pisg](http://pisg.sourceforge.net) installed somewhere on your system
 * pisg.cfg set up to taste, and working if pisg is called directly from the shell. Your Pisg config should contain, at minimum, the following:
-* * LogDir (Assuming you are using Supybot's ChannelLogger plugin, LogDir should be /path/to/botdir/logs/ChannelLogger/NETWORK/CHANNEL/)
-* * Format (If using ChannelLogger, this should be "supy")
-* * OutputFile set - ideally to an absolute path, but a filename will work. If only a filename is set, the output will be generated in the root of your bot directory.
+	* LogDir (Assuming you are using Supybot's ChannelLogger plugin, LogDir should be /path/to/botdir/logs/ChannelLogger/NETWORK/CHANNEL/)
+	* Format (If using ChannelLogger, this should be "supy")
+	* OutputFile set - ideally to an absolute path, but a filename will work. If only a filename is set, the output will be generated in the root of your bot directory.
 
 * An FTP server to upload the final statistics to **OR** a publicly-accessible location on your machine so users can view the stats. In either case, you need the contents of gfx/, found in your pisg directory or /usr/share/pisg/gfx/ on Debian/Ubuntu systems
 
